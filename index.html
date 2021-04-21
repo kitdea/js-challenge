@@ -5,12 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Javascript Challenge</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/style/style.css">
 </head>
 <body>
   <div class="container-1">
-      <h3>Challenge 1: Your Age in Days</h3>
+      <div class="title">
+        <h3>Challenge 1: Your Age in Days</h3>
+      </div>
     <div class="flex-box-container-1">
       <div id="flex-box-result"></div>
     </div>
@@ -26,16 +29,33 @@
   </div>
 
   <div class="container-1">
-      <h3>Challenge 2: Generator</h3>
+      <div class="title">
+        <h3>Challenge 2: Generator</h3>
+      </div>
     <div class="flex-box-container-2">
       <div class="flex-box-result-1" id="flexbox-img">
       </div>  
     </div>
     <div class="flex-box-container">
-      <!-- <div> -->
         <button class="btn btn-success rounded-0" id="img-generator" onclick="generate()">Generate</button>
         <button class="btn btn-danger rounded-0" id="remove-img" onclick="resetImg()">Delete</button>
-      <!-- </div> -->
+    </div> 
+  </div>
+
+    <div class="container-1">
+      <div class="title">
+        <h3>Challenge 3: Rock, Paper, Scissor</h3>
+      </div>
+    <div class="flex-box-container-2">
+      <div class="flex-box-result-2" id="flexbox-icons">
+        <i class="far fa-hand-rock"></i>
+        <i class="far fa-hand-paper"></i>
+        <i class="far fa-hand-scissors"></i>
+      </div>  
+    </div>
+    <div class="flex-box-container">
+        <button class="btn btn-success rounded-0" id="img-generator" onclick="generate()">Generate</button>
+        <button class="btn btn-danger rounded-0" id="remove-img" onclick="resetImg()">Delete</button>
     </div> 
   </div>
 
