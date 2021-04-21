@@ -34,12 +34,15 @@ function resetImg() {
 
 function rpsGame(yourChoice) {
   console.log(yourChoice);
-  var humanChoice, botChoice;
-  // humanChoice = yourChoice.id;
-  // botChoice = yourChoice.id;
-  // results = decideWinner(humanChoice, botChoice); //[0, 1] human lost | bot won
-  // message = finalMessage(results); // {'message': 'You Won', 'color': 'green'}
-  rpsFrontEnd(yourChoice.id, botChoice, message);
+  let humanChoice, botChoice;
+  humanChoice = yourChoice.id;
+  botChoice = numberToChoice(randToRpsInt());
+  console.log('Computer choice:', botChoice);
+  results = decideWinner(humanChoice, botChoice); //[0, 1] human lost | bot won
+  console.log(results);
+  message = finalMessage(results); // {'message': 'You Won', 'color': 'green'}
+  console.log(message);
+  // rpsFrontEnd(yourChoice.id, botChoice, message);
 }
 
 function randToRpsInt() {
@@ -47,5 +50,28 @@ function randToRpsInt() {
 }
 
 function numberToChoice(number) {
-  return ['rock', 'paper', 'scissor'] [number]
+  return ['rock', 'paper', 'scissor'][number];
+}
+
+function decideWinner(yourChoice, computerChoice) {
+  let rpsDatabase = {
+    'rock': {'scissor': 1, 'rock': 0.5, 'paper': 0},
+    'paper': {'rock': 1, 'paper': 0.5, 'scissor': 0},
+    'scissor': {'paper': 1, 'scissor': 0.5, 'rock': 0},
+  }
+
+  let yourScore = rpsDatabase[yourChoice][computerChoice];
+  let computerScore = rpsDatabase[computerChoice][yourChoice];
+
+  return [yourScore, computerScore];
+}
+
+function finalMessage([yourScore, computerScore]) {
+  if (yourScore === 0) {
+    return {'message': 'You lost!', 'color': 'red'};
+  } else if (yourScore === 0.5) {
+    return {'message': 'Draw!', 'color': 'yellow'};
+  } else {
+    return {'message': 'You won!', 'color': 'green'};
+  }
 }
