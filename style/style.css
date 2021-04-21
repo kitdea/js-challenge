@@ -62,12 +62,24 @@ body {
 
 .far, .fa {
   font-size: 50px;
+  /* color: rgb(235, 144, 25); */
+  padding: 10px;
+  border: 1px solid rgb(190, 190, 190);
+}
+
+.far:hover, .fa:hover {
+  color: tomato;
+  box-shadow: 1px 1px 12px rgb(209, 209, 209);
 }
 
 .flex-box-result-2 {
   display: flex;
   justify-content: space-evenly;
-  
+}
+
+.super-lawyers div {
+  width: 100%;
+  height: 100%;
 }
 
 @media (min-width: 648px) {
