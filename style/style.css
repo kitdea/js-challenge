@@ -65,6 +65,7 @@ body {
   /* color: rgb(235, 144, 25); */
   padding: 10px;
   border: 1px solid rgb(190, 190, 190);
+  cursor: pointer;
 }
 
 .far:hover, .fa:hover {
