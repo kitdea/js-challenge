@@ -96,8 +96,3 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
   document.getElementById('flexbox-icons').appendChild(messageDiv);
   document.getElementById('flexbox-icons').appendChild(botDiv);
 }
-
-
-function reset() {
-  document.getElementById('generate').remove();
-}
