@@ -32,21 +32,27 @@ body {
   justify-content: space-around;
 }
 
-.flex-box-container-1, .flex-box-container-2 {
+.flex-box-container-1, .flex-box-container-2, .flex-box-container-3 {
   display: flex;
-  border-top: 1px solid #000;
-  padding: 10px;
+  align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
+  border-top: 1px solid #000;
+  padding: 10px;
 }
 
-.flex-box-container-1 div, .flex-box-container-2 div {
+.flex-box-container-1 div, .flex-box-container-2 div, .flex-box-container-3 div {
   padding: 10px;
 }
 
 .flex-box-container-1:hover {
   background-color: #ffbaba;
   cursor: default;
+}
+
+.flex-box-container-2 img {
+  width: 130px;
+  cursor: pointer;
 }
 
 .flex-box-result-1 {
@@ -75,13 +81,13 @@ body {
   /* box-shadow: 1px 1px 12px rgb(31, 221, 255); */
 }
 
-.flex-box-container-2 img {
+.flex-box-container-3 img {
   filter: grayscale(100%);
   width: 120px;
   cursor: pointer;
 }
 
-.flex-box-container-2 img:hover {
+.flex-box-container-3 img:hover {
   filter: none;
   transform: scale(1.1);
   box-shadow: 1px 1px 12px rgb(209, 209, 209);
@@ -104,5 +110,10 @@ body {
 
   .flex-box-result-1 img {
     margin: 10px;
+  }
+
+  .flex-box-container-3 img {
+  width: 200px;
+  cursor: pointer;
   }
 }

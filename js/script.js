@@ -31,17 +31,12 @@ function resetImg() {
 }
 
 // Challenge 3: Rock, Paper, Scissor
-
 function rpsGame(yourChoice) {
-  console.log(yourChoice);
   var humanChoice, botChoice;
   humanChoice = yourChoice.id;
   botChoice = numberToChoice(randToRpsInt());
-  console.log('Computer choice:', botChoice);
   results = decideWinner(humanChoice, botChoice); //[0, 1] human lost | bot won
-  console.log(results);
   message = finalMessage(results); // {'message': 'You Won', 'color': 'green'}
-  console.log(message);
   rpsFrontEnd(yourChoice.id, botChoice, message);
 }
 
@@ -82,7 +77,6 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
     'paper': document.getElementById('paper').src,
     'scissor': document.getElementById('scissor').src
   }
-  console.log(iconsDatabase);
 
   // Remove all Icons
   document.getElementById('rock').remove();
@@ -94,13 +88,16 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
   var messageDiv = document.createElement('div');
 
   humanDiv.innerHTML = "<img src='" + iconsDatabase[humanImageChoice] + "' style='filter: none; box-shadow: 1px 1px 12px rgb(31, 221, 255);'>"
-  messageDiv.innerHTML = "<h3 style='color: " + finalMessage['color'] + "; '>" + finalMessage['message'] + "</h3>"
+  messageDiv.innerHTML = "<h3 style='color: " + finalMessage['color'] + "; font-size: 26px; '>" + finalMessage['message'] + "</h3>"
   botDiv.innerHTML = "<img src='" + iconsDatabase[botImageChoice] + "' style='filter: none; box-shadow: 1px 1px 12px rgb(255, 102, 102);'>"
   
 
   document.getElementById('flexbox-icons').appendChild(humanDiv);
-  document.getElementById('flexbox-icons').appendChild(botDiv);
   document.getElementById('flexbox-icons').appendChild(messageDiv);
+  document.getElementById('flexbox-icons').appendChild(botDiv);
+}
 
-  console.log(humanDiv);
+
+function reset() {
+  document.getElementById('generate').remove();
 }
