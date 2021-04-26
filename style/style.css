@@ -70,6 +70,7 @@ body {
 
 .far:hover, .fa:hover {
   color: tomato;
+  transform: scale(1.1);
   box-shadow: 1px 1px 12px rgb(209, 209, 209);
 }
 

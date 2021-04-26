@@ -34,7 +34,7 @@ function resetImg() {
 
 function rpsGame(yourChoice) {
   console.log(yourChoice);
-  let humanChoice, botChoice;
+  var humanChoice, botChoice;
   humanChoice = yourChoice.id;
   botChoice = numberToChoice(randToRpsInt());
   console.log('Computer choice:', botChoice);
@@ -42,7 +42,7 @@ function rpsGame(yourChoice) {
   console.log(results);
   message = finalMessage(results); // {'message': 'You Won', 'color': 'green'}
   console.log(message);
-  // rpsFrontEnd(yourChoice.id, botChoice, message);
+  rpsFrontEnd(yourChoice.id, botChoice, message);
 }
 
 function randToRpsInt() {
@@ -54,14 +54,14 @@ function numberToChoice(number) {
 }
 
 function decideWinner(yourChoice, computerChoice) {
-  let rpsDatabase = {
+  var rpsDatabase = {
     'rock': {'scissor': 1, 'rock': 0.5, 'paper': 0},
     'paper': {'rock': 1, 'paper': 0.5, 'scissor': 0},
     'scissor': {'paper': 1, 'scissor': 0.5, 'rock': 0},
   }
 
-  let yourScore = rpsDatabase[yourChoice][computerChoice];
-  let computerScore = rpsDatabase[computerChoice][yourChoice];
+  var yourScore = rpsDatabase[yourChoice][computerChoice];
+  var computerScore = rpsDatabase[computerChoice][yourChoice];
 
   return [yourScore, computerScore];
 }
@@ -74,4 +74,33 @@ function finalMessage([yourScore, computerScore]) {
   } else {
     return {'message': 'You won!', 'color': 'green'};
   }
+}
+
+function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
+  var iconsDatabase = {
+    'rock': document.getElementsByClassName('fa-hand-rock'),
+    'paper': document.getElementById('paper'),
+    'scissor': document.getElementById('scissor')
+  }
+  console.log(iconsDatabase);
+
+  // Remove all Icons
+  document.getElementById('rock').remove();
+  document.getElementById('paper').remove();
+  document.getElementById('scissor').remove();
+
+  var humanDiv = document.createElement('div');
+  var botDiv = document.createElement('div');
+  var messageDiv = document.createElement('div');
+
+  humanDiv.innerHTML = "<i class='" + iconsDatabase[humanImageChoice] + "'></i>"
+  messageDiv.innerHTML = "<h3 style='color: " + finalMessage['color'] + "; '>" + finalMessage['message'] + "</h3>"
+  botDiv.innerHTML = "<i class='" + iconsDatabase[humanImageChoice] + "'></i>"
+  
+
+  document.getElementById('flexbox-icons').appendChild(humanDiv);
+  document.getElementById('flexbox-icons').appendChild(botDiv);
+  document.getElementById('flexbox-icons').appendChild(messageDiv);
+
+  console.log(humanDiv);
 }
