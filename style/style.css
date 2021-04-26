@@ -72,6 +72,19 @@ body {
   color: tomato;
   transform: scale(1.1);
   box-shadow: 1px 1px 12px rgb(209, 209, 209);
+  /* box-shadow: 1px 1px 12px rgb(31, 221, 255); */
+}
+
+.flex-box-container-2 img {
+  filter: grayscale(100%);
+  width: 120px;
+  cursor: pointer;
+}
+
+.flex-box-container-2 img:hover {
+  filter: none;
+  transform: scale(1.1);
+  box-shadow: 1px 1px 12px rgb(209, 209, 209);
 }
 
 .flex-box-result-2 {

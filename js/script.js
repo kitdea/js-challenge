@@ -78,9 +78,9 @@ function finalMessage([yourScore, computerScore]) {
 
 function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
   var iconsDatabase = {
-    'rock': document.getElementsByClassName('fa-hand-rock'),
-    'paper': document.getElementById('paper'),
-    'scissor': document.getElementById('scissor')
+    'rock': document.getElementById('rock').src,
+    'paper': document.getElementById('paper').src,
+    'scissor': document.getElementById('scissor').src
   }
   console.log(iconsDatabase);
 
@@ -93,9 +93,9 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
   var botDiv = document.createElement('div');
   var messageDiv = document.createElement('div');
 
-  humanDiv.innerHTML = "<i class='" + iconsDatabase[humanImageChoice] + "'></i>"
+  humanDiv.innerHTML = "<img src='" + iconsDatabase[humanImageChoice] + "' style='filter: none; box-shadow: 1px 1px 12px rgb(31, 221, 255);'>"
   messageDiv.innerHTML = "<h3 style='color: " + finalMessage['color'] + "; '>" + finalMessage['message'] + "</h3>"
-  botDiv.innerHTML = "<i class='" + iconsDatabase[humanImageChoice] + "'></i>"
+  botDiv.innerHTML = "<img src='" + iconsDatabase[botImageChoice] + "' style='filter: none; box-shadow: 1px 1px 12px rgb(255, 102, 102);'>"
   
 
   document.getElementById('flexbox-icons').appendChild(humanDiv);
