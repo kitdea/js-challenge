@@ -58,13 +58,25 @@
 
   <div class="container-1">
     <div class="title">
-      <h3>Challenge 3: Rock, Paper, Scissor</h3>
+      <h3 id-change-my-color>Challenge 4: Color Buttons</h3>
     </div>
-    <div class="flex-box-container-3" id="flexbox-icons">
-      <button class="btn btn-success rounded-0" id="" >Reset</button>
-      <button class="btn btn-success rounded-0" id="" >Reset</button>
-      <button class="btn btn-success rounded-0" id="" >Reset</button>
-      <button class="btn btn-success rounded-0" id="" >Reset</button>
+    <div class="flexbox-pick-color">
+      <form action="">
+        <select name="backdrop" id="background" onchange="buttoncolorChange(this)">
+          <option value="Random">Random</option>
+          <option value="yellow">Yellow</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="gray">Gray</option>
+          <option value="reset">Reset</option>
+        </select>
+      </form>
+    </div>
+    <div class="flex-box-container-4" id="flexbox-icons">
+      <button class="btn btn-warning rounded-0" id="" >Amazon</button>
+      <button class="btn btn-success rounded-0" id="" >Google</button>
+      <button class="btn btn-primary rounded-0" id="" >Facebook</button>
+      <button class="btn btn-secondary rounded-0" id="" >Apple</button>
     </div>
   </div>
 

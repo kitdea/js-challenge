@@ -96,3 +96,5 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
   document.getElementById('flexbox-icons').appendChild(messageDiv);
   document.getElementById('flexbox-icons').appendChild(botDiv);
 }
+
+// Challenge 4: Color Buttons 
