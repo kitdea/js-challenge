@@ -97,4 +97,73 @@ function rpsFrontEnd(humanImageChoice, botImageChoice, finalMessage) {
   document.getElementById('flexbox-icons').appendChild(botDiv);
 }
 
-// Challenge 4: Color Buttons 
+// Challenge 4: Change Color Buttons
+var all_buttons = document.getElementsByTagName('button');
+
+var copyAllButtons = [];
+for (let i=0; i < all_buttons.length; i++) {
+  copyAllButtons.push(all_buttons[i])
+}
+
+console.log(copyAllButtons);
+
+function buttonColorChange(buttonThingy) {
+  if (buttonThingy.value === 'yellow') {
+    buttonYellow();
+  } else if (buttonThingy.value === 'green') {
+    buttonGreen();
+  } else if (buttonThingy.value === 'blue') {
+    buttonBlue();
+  } else if (buttonThingy.value === 'red') {
+    buttonRed();
+  } else if (buttonThingy.value === 'random') {
+    randomColors();
+  } else if (buttonThingy.value === 'reset') {
+    buttonColorReset();
+  }
+}
+
+function buttonYellow() {
+  for (let i=0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add('btn-warning');
+  }
+}
+
+function buttonGreen() {
+  for (let i=0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add('btn-success');
+  }
+}
+
+function buttonBlue() {
+  for (let i=0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add('btn-primary');
+  }
+}
+
+function buttonRed() {
+  for (let i=0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add('btn-danger');
+  }
+}
+
+function buttonColorReset() {
+  for (let i=0; i < all_buttons.length; i++) {
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add(copyAllButtons[i]);
+  }
+}
+
+function randomColors() {
+  var choices = ['btn-warning', 'btn-success', 'btn-primary', 'btn-danger'];
+
+  for (let i=0; i < all_buttons.length; i++) {
+    var randomNumber = Math.floor(Math.random() * 4);
+    all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+    all_buttons[i].classList.add(choices[randomNumber]);
+  }
+}
