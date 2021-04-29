@@ -102,11 +102,10 @@ var all_buttons = document.getElementsByTagName('button');
 
 var copyAllButtons = [];
 for (let i=0; i < all_buttons.length; i++) {
-  copyAllButtons.push(all_buttons[i])
+  copyAllButtons.push(all_buttons[i]);
 }
 
-console.log(copyAllButtons);
-
+// Color Change Value
 function buttonColorChange(buttonThingy) {
   if (buttonThingy.value === 'yellow') {
     buttonYellow();
@@ -123,6 +122,7 @@ function buttonColorChange(buttonThingy) {
   }
 }
 
+// Buttons
 function buttonYellow() {
   for (let i=0; i < all_buttons.length; i++) {
     all_buttons[i].classList.remove(all_buttons[i].classList[1]);
@@ -151,6 +151,7 @@ function buttonRed() {
   }
 }
 
+//Reset Button
 function buttonColorReset() {
   for (let i=0; i < all_buttons.length; i++) {
     all_buttons[i].classList.remove(all_buttons[i].classList[1]);
@@ -158,11 +159,12 @@ function buttonColorReset() {
   }
 }
 
+//Random Button
 function randomColors() {
-  var choices = ['btn-warning', 'btn-success', 'btn-primary', 'btn-danger'];
+  let choices = ['btn-warning', 'btn-success', 'btn-primary', 'btn-danger'];
 
   for (let i=0; i < all_buttons.length; i++) {
-    var randomNumber = Math.floor(Math.random() * 4);
+    let randomNumber = Math.floor(Math.random() * 5);
     all_buttons[i].classList.remove(all_buttons[i].classList[1]);
     all_buttons[i].classList.add(choices[randomNumber]);
   }
