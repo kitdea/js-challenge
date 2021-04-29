@@ -122,6 +122,11 @@ function buttonColorChange(buttonThingy) {
   }
 }
 
+document.querySelector('#yellow').addEventListener('click', buttonYellow);
+document.querySelector('#green').addEventListener('click', buttonGreen);
+document.querySelector('#blue').addEventListener('click', buttonBlue);
+document.querySelector('#red').addEventListener('click', buttonRed);
+
 // Buttons
 function buttonYellow() {
   for (let i=0; i < all_buttons.length; i++) {
@@ -168,4 +173,11 @@ function randomColors() {
     all_buttons[i].classList.remove(all_buttons[i].classList[1]);
     all_buttons[i].classList.add(choices[randomNumber]);
   }
+}
+
+// Challenge 5: Blackjack
+document.querySelector('#blackjack-hit-btn').addEventListener('click', blackjackHit);
+
+function blackjackHit() {
+  alert('Ouch, you clicked me!');
 }
