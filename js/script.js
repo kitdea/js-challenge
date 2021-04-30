@@ -176,8 +176,24 @@ function randomColors() {
 }
 
 // Challenge 5: Blackjack
+let blackJackGame = {
+  'you': {'score': '#your-blackjack-score', 'div': '#your-score-box', 'score': 0},
+  'dealer': {'scoreSpan': '#dealer-blackjack-score', 'div': '#dealer-score-box', 'score': 0},
+};
+
+const YOU = blackJackGame['you']
+const DEALER = blackJackGame['dealer']
+
+const hitSound = new Audio('img/sounds/swish.m4a');
+
 document.querySelector('#blackjack-hit-btn').addEventListener('click', blackjackHit);
 
 function blackjackHit() {
-  alert('Ouch, you clicked me!');
+  let cardImage = document.createElement('img');
+  cardImage.height = 130;
+  cardImage.width = 90;
+  cardImage.style.margin = '0 8px';
+  cardImage.src = 'img/cards/AC.png';
+  document.querySelector(YOU['div']).appendChild(cardImage);
+  hitSound.play();
 }
