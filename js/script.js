@@ -189,10 +189,14 @@ const hitSound = new Audio('img/sounds/swish.m4a');
 document.querySelector('#blackjack-hit-btn').addEventListener('click', blackjackHit);
 
 function blackjackHit() {
+  showCard();
+}
+
+function showCard() {
   let cardImage = document.createElement('img');
   cardImage.height = 130;
   cardImage.width = 90;
-  cardImage.style.margin = '0 8px';
+  cardImage.style.margin = '8px 8px';
   cardImage.src = 'img/cards/AC.png';
   document.querySelector(YOU['div']).appendChild(cardImage);
   hitSound.play();
