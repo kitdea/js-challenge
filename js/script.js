@@ -179,7 +179,8 @@ function randomColors() {
 let blackJackGame = {
   'you': {'score': '#your-blackjack-score', 'div': '#your-score-box', 'score': 0},
   'dealer': {'scoreSpan': '#dealer-blackjack-score', 'div': '#dealer-score-box', 'score': 0},
-  'cards': ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
+  'cards': ['2C', '2D', '2H', '2S','3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
+  'cardsMap': {'2C': 2, '2D': 2, '2H': 2, '2S': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,'10': 10, 'J': 10, 'Q': 10, 'K': 10, 'A': [1, 11]},
 };
 
 const YOU = blackJackGame['you'];
@@ -195,7 +196,9 @@ function blackjackHit() {
   let card = randomCards();
   console.log(card);
   showCard(card, YOU);
-  // showCard(DEALER);
+  updateScore(card, YOU);
+  console.log(YOU['score']);
+  showScore(YOU);
 }
 
 function randomCards() {
@@ -226,3 +229,19 @@ function blackjackDeal() {
   }
 }
 
+function updateScore(card, activePlayer) {
+  if (card === 'A') {
+  // If adding 11 keeps me below 21, add 11. Otherwise, add 1
+    if (activePlayer['score'] + blackJackGame['cardsMap'][card] <= 21) {
+      activePlayer['score'] += blackJackGame['cardsMap'][card][1];
+    } else {
+      activePlayer['score'] += blackJackGame['cardsMap'][card][0];
+    }
+  } else {
+  activePlayer['score'] += blackJackGame['cardsMap'][card];
+  }
+}
+
+function showScore(activePlayer) {
+  document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score'];
+}
