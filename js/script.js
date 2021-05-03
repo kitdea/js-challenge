@@ -177,10 +177,10 @@ function randomColors() {
 
 // Challenge 5: Blackjack
 let blackJackGame = {
-  'you': {'score': '#your-blackjack-score', 'div': '#your-score-box', 'score': 0},
+  'you': {'scoreSpan': '#your-blackjack-score', 'div': '#your-score-box', 'score': 0},
   'dealer': {'scoreSpan': '#dealer-blackjack-score', 'div': '#dealer-score-box', 'score': 0},
-  'cards': ['2C', '2D', '2H', '2S','3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
-  'cardsMap': {'2C': 2, '2D': 2, '2H': 2, '2S': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,'10': 10, 'J': 10, 'Q': 10, 'K': 10, 'A': [1, 11]},
+  'cards': ['2','3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
+  'cardsMap': {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,'10': 10, 'J': 10, 'Q': 10, 'K': 10, 'A': [1, 11]},
 };
 
 const YOU = blackJackGame['you'];
@@ -189,9 +189,9 @@ const DEALER = blackJackGame['dealer'];
 const hitSound = new Audio('img/sounds/swish.m4a');
 
 document.querySelector('#blackjack-hit-btn').addEventListener('click', blackjackHit);
-
 document.querySelector('#blackjack-deal-btn').addEventListener('click', blackjackDeal);
 
+// Hit Button
 function blackjackHit() {
   let card = randomCards();
   console.log(card);
@@ -207,6 +207,7 @@ function randomCards() {
 }
 
 function showCard(card, activePlayer) {
+  if (activePlayer['score'] <= 21) {
   let cardImage = document.createElement('img');
   cardImage.height = 130;
   cardImage.width = 90;
@@ -214,8 +215,10 @@ function showCard(card, activePlayer) {
   cardImage.src = `img/cards/${card}.png`;
   document.querySelector(activePlayer['div']).appendChild(cardImage);
   hitSound.play();
+  }
 }
 
+// Deal Button 
 function blackjackDeal() {
   let yourImages = document.querySelector('#your-score-box').querySelectorAll('img');
   let dealerImages = document.querySelector('#dealer-score-box').querySelectorAll('img');
@@ -227,6 +230,15 @@ function blackjackDeal() {
   for (i=0; i < dealerImages.length; i++) {
     dealerImages[i].remove();
   }
+
+  YOU['score'] = 0;
+  DEALER['score'] = 0;
+
+  document.querySelector('#your-blackjack-score').textContent = 0;
+  document.querySelector('#dealer-blackjack-score').textContent = 0;
+
+  document.querySelector('#your-blackjack-score').style.color = '#ffffff';
+  document.querySelector('#dealer-blackjack-score').style.color = '#ffffff';
 }
 
 function updateScore(card, activePlayer) {
@@ -243,5 +255,10 @@ function updateScore(card, activePlayer) {
 }
 
 function showScore(activePlayer) {
-  document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score'];
+  if (activePlayer['score'] > 21) {
+    document.querySelector(activePlayer['scoreSpan']).textContent = 'BUST!';
+    document.querySelector(activePlayer['scoreSpan']).style.color = 'red';
+  } else {
+    document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score'];
+  }
 }
