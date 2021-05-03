@@ -269,6 +269,7 @@ function dealerLogic() {
   showCard(card, DEALER);
   updateScore(card, DEALER);
   showScore(DEALER);
+  computeWinner();
 }
 
 // Compute Winner and Return who just won
@@ -297,5 +298,6 @@ function computeWinner() {
     console.log('You drew!');
   }
 
+  console.log('Winner is ', winner)
   return winner;
 }
