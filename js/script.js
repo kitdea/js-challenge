@@ -181,12 +181,17 @@ let blackJackGame = {
   'dealer': {'scoreSpan': '#dealer-blackjack-score', 'div': '#dealer-score-box', 'score': 0},
   'cards': ['2','3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
   'cardsMap': {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,'10': 10, 'J': 10, 'Q': 10, 'K': 10, 'A': [1, 11]},
+  'wins': 0,
+  'losses': 0,
+  'draws': 0,
 };
 
 const YOU = blackJackGame['you'];
 const DEALER = blackJackGame['dealer'];
 
 const hitSound = new Audio('img/sounds/swish.m4a');
+const winSound = new Audio('img/sounds/cash.mp3');
+const lossSound = new Audio('img/sounds/aww.mp3');
 
 document.querySelector('#blackjack-hit-btn').addEventListener('click', blackjackHit);
 document.querySelector('#blackjack-stand-btn').addEventListener('click', dealerLogic);
@@ -237,7 +242,8 @@ function blackjackDeal() {
 
   document.querySelector('#your-blackjack-score').textContent = 0;
   document.querySelector('#dealer-blackjack-score').textContent = 0;
-
+  document.querySelector('#blackjack-result').textContent = "Let's Play";
+  document.querySelector('#blackjack-result').style.color = '#000000';
   document.querySelector('#your-blackjack-score').style.color = '#ffffff';
   document.querySelector('#dealer-blackjack-score').style.color = '#ffffff';
 }
@@ -247,11 +253,13 @@ function updateScore(card, activePlayer) {
   // If adding 11 keeps me below 21, add 11. Otherwise, add 1
     if (activePlayer['score'] + blackJackGame['cardsMap'][card] <= 21) {
       activePlayer['score'] += blackJackGame['cardsMap'][card][1];
+
     } else {
       activePlayer['score'] += blackJackGame['cardsMap'][card][0];
     }
+
   } else {
-  activePlayer['score'] += blackJackGame['cardsMap'][card];
+    activePlayer['score'] += blackJackGame['cardsMap'][card];
   }
 }
 
@@ -259,6 +267,7 @@ function showScore(activePlayer) {
   if (activePlayer['score'] > 21) {
     document.querySelector(activePlayer['scoreSpan']).textContent = 'BUST!';
     document.querySelector(activePlayer['scoreSpan']).style.color = 'red';
+
   } else {
     document.querySelector(activePlayer['scoreSpan']).textContent = activePlayer['score'];
   }
@@ -269,35 +278,69 @@ function dealerLogic() {
   showCard(card, DEALER);
   updateScore(card, DEALER);
   showScore(DEALER);
-  computeWinner();
+
+  if (DEALER['score'] > 15) {
+    let winner = computeWinner();
+    showResult(winner);
+  }
 }
 
 // Compute Winner and Return who just won
+// Update Wins, Draws, and Losses
 function computeWinner() {
   let winner;
 
   if(YOU['score'] <= 21) {
+
     // Condition: Higher score than dealer
     if (YOU['score'] > DEALER['score'] || (DEALER['score'] > 21)) {
-      console.log('You Won');
-      winner = YOU;
+        blackJackGame['wins']++;
+        winner = YOU;
+
     } else if (YOU['score'] < DEALER['score']) {
-      console.log('You lost!');
-      winner = DEALER;
+        blackJackGame['losses']++;
+        winner = DEALER;
+
     } else if (YOU['score'] === DEALER['score']) {
-      console.log('Draw!')
+        blackJackGame['draws']++;
     }
 
     // Condition: when user busts but dealer doesnt't
   } else if (YOU['score'] > 21 && DEALER['score'] <= 21) {
-    console.log('You lost!');
-    winner = DEALER;
+      blackJackGame['losses']++;
+      winner = DEALER;
 
     // Condition: when you AND the dealer busts
   } else if (YOU['score'] > 21 && DEALER['score'] > 21) {
-    console.log('You drew!');
+      blackJackGame['draws']++;
   }
 
-  console.log('Winner is ', winner)
+  console.log(blackJackGame);
   return winner;
+}
+
+function showResult(winner) {
+  let message, messageColor;
+
+  if (winner === YOU) {
+    document.querySelector('#wins').textContent = blackJackGame['wins'];
+    message = 'You Won!';
+    messageColor = 'green';
+    winSound.play();
+
+  } else if (winner === DEALER) {
+    document.querySelector('#losses').textContent = blackJackGame['losses'];
+    message = 'You Lost!';
+    messageColor = 'red';
+    lossSound.play();
+
+  } else {
+    document.querySelector('#draws').textContent = blackJackGame['draws'];
+    message = 'Draw!';
+    messageColor = 'black';
+    
+  } 
+
+  document.querySelector('#blackjack-result').textContent = message;
+  document.querySelector('#blackjack-result').style.color = messageColor;
 }
