@@ -286,19 +286,24 @@ function showScore(activePlayer) {
   }
 }
 
-function dealerLogic() {
-  blackJackGame['isStand'] = true;
-  let card = randomCards();
-  showCard(card, DEALER);
-  updateScore(card, DEALER);
-  showScore(DEALER);
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-  if (DEALER['score'] > 15) {
-    blackJackGame['turnsOver'] = true;
-    let winner = computeWinner();
-    showResult(winner);
-    console.log(blackJackGame['turnsOver']);
+async function dealerLogic() {
+  blackJackGame['isStand'] = true;
+
+  while (DEALER['score'] < 16 && blackJackGame['isStand'] === true) {
+    let card = randomCards();
+    showCard(card, DEALER);
+    updateScore(card, DEALER);
+    showScore(DEALER);
+    await sleep(1000);
   }
+
+  blackJackGame['turnsOver'] = true;
+  let winner = computeWinner();
+  showResult(winner);
 }
 
 // Compute Winner and Return who just won
